@@ -17,9 +17,30 @@ RouteTable.setHeading("Route", "Status","Enabled");
 const APITable = new ascii("API Table");
 APITable.setHeading("API", "Status", "Router" , "Method");
 
+const mysql = require("mysql");
+const { createConnection } = mysql;
+const connection = createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});
+
+connection.connect((err) => {
+    if (err) {
+        console.error("Error: Failed to establish connection to the MySQL database server".red.bold);
+        return;
+    }
+    console.log("Success: Connected to the MySQL database server".green.bold);
+});
+
+
 /**
  * @param {express.Router} Router
  */
+
+const element = {};
+
 const loadAPIs = (Router,route_name) => {
     readdirSync("./API").forEach((dir) => {
         readdirSync(`./API/${dir}`).filter(file => file.endsWith(".js")).forEach((file) => {
@@ -28,7 +49,15 @@ const loadAPIs = (Router,route_name) => {
                 if(api.execute && api.help){
                     if(api.help.router == route_name) {
                         Router.route(`/${api.help.host}`)[api.help.method.toLowerCase()]((req,res) => {
-                            api.execute(req, res);
+                            /**
+                             * @param {express.Request} req
+                             * @param {express.Response} res
+                             * @param {object} element
+                             * @param {mysql.Connection} database
+                             * @returns {Promise<void>}
+                             */
+                            api.execute(req, res,element,database);
+                            
                         });
                         APITable.addRow(`${file}`, "✅", api.help.router, api.help.method);
                     }

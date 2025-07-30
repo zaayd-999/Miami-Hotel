@@ -8,7 +8,7 @@ const bookingSystemRouter = Router();
 
 module.exports = {
     Router : bookingSystemRouter,
-    host : 'booking-system',
+    host : 'booking_system',
     enabled: true,
     description: 'Manages booking operations including reservations, cancellations, and booking history.'
 }

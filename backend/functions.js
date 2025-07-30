@@ -32,5 +32,12 @@ module.exports = {
     sendMail : async (transport , html , subject, to) => {
         let x=1;
 
+    },
+    setElementData : (element , data , value) => {
+        element[data] = value;
+        return element;
+    },
+    getElementData : (element, data) => {
+        return element[data];
     }
 }
