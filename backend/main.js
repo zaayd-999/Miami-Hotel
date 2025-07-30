@@ -53,11 +53,11 @@ const loadAPIs = (Router,route_name) => {
                              * @param {express.Request} req
                              * @param {express.Response} res
                              * @param {object} element
-                             * @param {mysql.Connection} database
+                             * @param {mysql.Connection} connection
                              * @returns {Promise<void>}
                              */
-                            api.execute(req, res,element,database);
-                            
+                            api.execute(req, res,element,connection);
+
                         });
                         APITable.addRow(`${file}`, "✅", api.help.router, api.help.method);
                     }

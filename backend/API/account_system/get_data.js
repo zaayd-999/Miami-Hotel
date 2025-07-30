@@ -8,12 +8,12 @@ const mysql = require('mysql');
  * @returns {Promise<void>}
  */
 exports.execute = async (req, res , element , database) => {
-    
+    res.send("Login endpoint is under construction.");
 }
 
 exports.help = {
     router : "account_system",
     host : "login",
     description : "Login to your account",
-    method : "POST",
+    method : "GET",
 }
