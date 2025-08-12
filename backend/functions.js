@@ -21,7 +21,7 @@ module.exports = {
      * @param {Number} length
      * @description Generate a random salt of the given length.
     */
-    generateSalt: (length) => {
+    generateSalt: (length=16) => {
         let salt = '';
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         for (let i = 0; i < length; i++) {
@@ -36,7 +36,7 @@ module.exports = {
      * @returns {boolean}
      * @description Check if the password matches the hashed password.
      */
-    checkPassword: (password, hashedPassword, salt) => {
+    checkPassword: (hashedPassword,password, salt) => {
         return md5(password + salt) === hashedPassword;
     },
     /**
@@ -69,5 +69,16 @@ module.exports = {
      */
     getElementData : (element, data) => {
         return element[data];
+    },
+    /**
+     * 
+     * @param {Number} roleID 
+     * @returns {string}
+     * @description get the user role from ID.
+     */
+    getUserRole : (roleID)=>{
+        if(roleID == 0) return "Memeber";
+        if(roleID == 1) return "Hotel Owner";
+        if(roleID == 2) return "Admin";
     }
 }

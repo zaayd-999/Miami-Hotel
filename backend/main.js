@@ -16,6 +16,7 @@ app.use(cors({
     credentials: true
 }));
 
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.json());
@@ -31,10 +32,6 @@ RouteTable.setHeading("Route", "Status","Enabled");
 
 const APITable = new ascii("API Table");
 APITable.setHeading("API", "Status", "Router" , "Method");
-
-/**
- * @param {express.Router} Router
- */
 
 const element = {};
 
@@ -56,6 +53,15 @@ database.connect((err) => {
     console.log("Connected to the MySQL database server".green.bold);
 });
 
+let transporter = null;
+
+/**
+ * @param {express.Router} Router
+ * @param {string} route_name
+ * @returns {void}
+ * @description Loads all APIs for a specific route
+ */
+
 const loadAPIs = (Router,route_name) => {
     for (const dir of readdirSync("./API")) {
         for(const file of readdirSync(`./API/${dir}`).filter(file => file.endsWith(".js"))) {
@@ -68,11 +74,10 @@ const loadAPIs = (Router,route_name) => {
                              * @param {express.Request} req
                              * @param {express.Response} res
                              * @param {object} element
-                             * @param {mysql.Connection} database
                              * @returns {Promise<void>}
                              */
                             
-                            api.execute(req, res,element,database);
+                            api.execute(req, res,element,database, transporter);
                         });
                         APITable.addRow(`${file}`, "✅", api.help.router, api.help.method);
                     }
@@ -86,17 +91,22 @@ const loadAPIs = (Router,route_name) => {
     };
 }
 
+/**
+ * @returns {void}
+ * @description Loads all routes from the Routes directory
+ */
+
 const loadRoutes = () => {
     for(const file of readdirSync("./Routes")) {
         if (file.endsWith(".js")) {
             const route = require(`./Routes/${file}`);
             try {
                 if(route.enabled === false) {
-                    app.get(`/${route.host}`, (req, res) => {
+                    app.get(`/${route.host}`,(req, res) => {
                         res.status(404).send("This route is disabled.");    
                     });
                 } else {
-                    app.use(`/${route.host}`, route.Router);
+                    app.use(`/${route.host}`,route.middleware, route.Router);
                     loadAPIs(route.Router, route.host);
                 }   
                 RouteTable.addRow(`${route.host}`, "✅", route.enabled ? "Enabled" : "Disabled");
@@ -119,8 +129,3 @@ loadRoutes();
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`.green.bold);
 });
-
-
-module.exports = {
-    loader : loadAPIs,
-}

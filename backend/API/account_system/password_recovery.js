@@ -8,7 +8,7 @@ const mysql = require('mysql');
  * @returns {Promise<void>}
  */
 exports.execute = async (req, res , element , database) => {
-    
+    res.json(req.user);
 }
 
 exports.help = {
