@@ -8,9 +8,19 @@ const transport = createTransport({
 
 
 module.exports = {
+    /**
+     * @param {string} password
+     * @param {string} salt
+     * @returns {string}
+     * @description Hash the password with the salt using md5.
+    */
     hashPassword: (password , salt) => {
         return md5(password+salt);
     },
+    /**
+     * @param {Number} length
+     * @description Generate a random salt of the given length.
+    */
     generateSalt: (length) => {
         let salt = '';
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -19,6 +29,13 @@ module.exports = {
         }
         return salt;
     },
+    /**
+     * @param {string} password
+     * @param {string} hashedPassword
+     * @param {string} salt
+     * @returns {boolean}
+     * @description Check if the password matches the hashed password.
+     */
     checkPassword: (password, hashedPassword, salt) => {
         return md5(password + salt) === hashedPassword;
     },
@@ -33,10 +50,23 @@ module.exports = {
         let x=1;
 
     },
+    /**
+     * @param {Object} element 
+     * @param {String} data 
+     * @param {String} value 
+     * @returns {String}
+     * @description Set a value in the element object.
+     */
     setElementData : (element , data , value) => {
         element[data] = value;
         return element;
     },
+    /**
+     * @param {Object} element 
+     * @param {String} data 
+     * @returns {String}
+     * @description Get a value from the element object.
+     */
     getElementData : (element, data) => {
         return element[data];
     }

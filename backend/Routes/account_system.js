@@ -2,13 +2,12 @@ const express = require('express');
 const { Router } = express;
 
 const accountSystemRouter = Router();
-const middleware = (req, res, next) => {
-    console.log(`Request received at ${req.originalUrl}`);
+
+const authMiddleware =  (req,res,next) => {
+    
     next();
 }
 
-
-accountSystemRouter.use(middleware)
 module.exports = {
     Router : accountSystemRouter,
     host : 'account_system',
