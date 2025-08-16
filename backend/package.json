@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
+    "devStart": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,6 +22,7 @@
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "md5": "^2.3.0",
+    "moment": "^2.30.1",
     "mysql": "^2.18.1",
     "nodemailer": "^7.0.5"
   }

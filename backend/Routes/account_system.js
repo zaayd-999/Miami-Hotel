@@ -11,24 +11,22 @@ const accountSystemRouter = Router();
 */
 
 const authMiddleware = (req,res,next) => {
-    let originalURL = req.originalUrl;
-    console.log(originalURL)
+    /*let originalURL = req.originalUrl;
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(" ")[1];
     if(token == null){
-        // Check if the originalURL because you can't just register by token or also login the second time.
         if(originalURL == "/account_system/register" || originalURL == "/account_system/login") {
             next();
-            return;
+        } else {
+            res.sendStatus(401);
         }
-        return res.sendStatus(401);
     } else {
         jwt.verify(token , process.env.ACCESS_TOKEN_SECRET , (err, user)=>{
             if(err) return res.sendStatus(403);
             req.user = user;
             next();
         });
-    }
+    }*/
     next();
 }
 

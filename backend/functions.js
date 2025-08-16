@@ -1,6 +1,7 @@
 const md5 = require('md5');
 const nodemailer = require('nodemailer');
 const { createTransport } = require('nodemailer');
+const moment = require("moment");
 
 const transport = createTransport({
     host:'gmail'
@@ -80,5 +81,24 @@ module.exports = {
         if(roleID == 0) return "Memeber";
         if(roleID == 1) return "Hotel Owner";
         if(roleID == 2) return "Admin";
-    }
+    },
+    /**
+     * 
+     * @param {nodemailer.Transport} transport 
+     * @param {nodemailer.TransportOptions} mailOptions 
+     * @param {CallableFunction} callback 
+     * @description send a mail
+     */
+    sendMail : (transport , mailOptions , callback) => {
+        transport.sendMail(mailOptions , (err , info) => {
+            callback(err,info);
+        });
+    },
+    /**
+     * 
+     * @returns get current time
+     */
+    getTime : () => {
+        return moment(Date.now()).format("YYYY-DD-MM [at] hh:mm A")
+    },
 }

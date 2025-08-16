@@ -53,7 +53,17 @@ database.connect((err) => {
     console.log("Connected to the MySQL database server".green.bold);
 });
 
-let transporter = null;
+const { createTransport } = require("nodemailer");
+let transport = createTransport({
+    service:"gmail",
+    host:"smtp.gmail.email",
+    port:587,
+    secure:false,
+    auth:{
+        user:process.env.MAIL_USER,
+        pass:process.env.MAIL_PASSWORD,
+    }
+});
 
 /**
  * @param {express.Router} Router
@@ -77,7 +87,7 @@ const loadAPIs = (Router,route_name) => {
                              * @returns {Promise<void>}
                              */
                             
-                            api.execute(req, res,element,database, transporter);
+                            api.execute(req, res,element,database, transport);
                         });
                         APITable.addRow(`${file}`, "✅", api.help.router, api.help.method);
                     }
@@ -95,7 +105,6 @@ const loadAPIs = (Router,route_name) => {
  * @returns {void}
  * @description Loads all routes from the Routes directory
  */
-
 const loadRoutes = () => {
     for(const file of readdirSync("./Routes")) {
         if (file.endsWith(".js")) {

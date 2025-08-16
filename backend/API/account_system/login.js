@@ -8,10 +8,10 @@ const { checkPassword , getUserRole } = require("../../functions")
  * @param {object} element
  * @param {mysql.Connection} database
  * @returns {Promise<void>}
+ * @description Login to your account
  */
 exports.execute = async (req, res , element , database) => {
-    if(req.user) return res.status(409).json({ message: "User already logged in" });
-    // User Auth : 
+    
     const { email , password } = req.body;
     let sqlStatement = "SELECT * FROM users WHERE email=?"
     database.query(sqlStatement , email , (err , data)=>{
