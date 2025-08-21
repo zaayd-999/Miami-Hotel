@@ -1,6 +1,5 @@
 import {motion} from "framer-motion";
 import "./Hero.css"
-
 import heroImage from "./assets/hero-background.jpg"
 
 const Hero = () => {

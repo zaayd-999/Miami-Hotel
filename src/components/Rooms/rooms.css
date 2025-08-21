@@ -48,3 +48,9 @@
   padding: 10px 20px;
   cursor: pointer;
 }
+
+.room-card button:hover {
+  background: white;
+  color: #c8a97e;
+  border: solid 1px #c8a97e;
+}

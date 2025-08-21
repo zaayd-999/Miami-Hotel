@@ -1,0 +1,99 @@
+.restaurant {
+    position: relative;
+}
+
+.background-image {
+    height: 80vh;
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+overlay {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.restaurant-content {
+  text-align: center;
+  color: white;
+}
+
+.description-sec {
+  padding: 80px 5%;
+  background: #f8f5f0;
+}
+
+.description {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.description-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: #2a2a2a;
+  line-height: 1.2;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.description-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 300;
+}
+
+
+.restaurant-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.menu-btn, .book-btn {
+  padding: 15px 35px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.menu-btn:hover {
+  background: white;
+  color: black;
+}
+
+.book-btn {
+  background: #c8a97e;
+  border-color: #c8a97e;
+}
+
+.book-btn:hover {
+  background: #b5986e;
+  border-color: #b5986e;
+}

@@ -1,6 +1,8 @@
 import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
 import Rooms from "../components/Rooms/rooms"
+import Restaurant from "../components/Restaurant/Restaurant"
+
 
 
 function LandingPage() {
@@ -9,6 +11,7 @@ function LandingPage() {
             <Header />
             <Hero />
             <Rooms />
+            <Restaurant />
         </div>
     );
 }
