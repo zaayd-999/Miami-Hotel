@@ -3,6 +3,9 @@ import "./Hero.css"
 import heroImage from "./assets/hero-background.jpg"
 
 const Hero = () => {
+    const handleExplore = () => {
+
+    }
     return (
         <section className="hero">
             <div
@@ -18,7 +21,7 @@ const Hero = () => {
             >
                 <h1>MIAMI HOTEL</h1>
                 <p>Luxury Redefined</p>
-                <button className="explore">EXPLORE</button>
+                <button className="explore" onClick={handleExplore}>EXPLORE</button>
             </motion.div>
         </section>
     )

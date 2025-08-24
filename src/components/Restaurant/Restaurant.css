@@ -1,18 +1,18 @@
 .restaurant {
-    position: relative;
+  position: relative;
 }
 
 .background-image {
-    height: 80vh;
-    min-height: 600px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 80vh;
+  min-height: 600px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 overlay {
@@ -28,13 +28,15 @@ overlay {
 }
 
 .restaurant-content {
-  text-align: center;
-  color: white;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .description-sec {
-  padding: 80px 5%;
+  padding: 70px 5%;
   background: #f8f5f0;
+  border-radius: 3px;
+  width: 380px;
 }
 
 .description {
@@ -42,9 +44,9 @@ overlay {
   margin: 0 auto;
 }
 
-.description-content h2 {
+.description h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 2.8rem;
+  font-size: 1.8rem;
   font-weight: 400;
   color: #2a2a2a;
   line-height: 1.2;
@@ -52,15 +54,14 @@ overlay {
   text-align: center;
 }
 
-.description-content p {
-  font-size: 1.1rem;
+.description p {
+  font-size: 0.8rem;
   line-height: 1.8;
   color: #555;
   margin-bottom: 25px;
   text-align: center;
   font-weight: 300;
 }
-
 
 .restaurant-actions {
   display: flex;
@@ -69,31 +70,37 @@ overlay {
   margin-top: 40px;
 }
 
-.menu-btn, .book-btn {
+.menu-btn, .booking-btn {
   padding: 15px 35px;
   border: 1px solid white;
   background: transparent;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  min-width: 200px;
+  min-width: 100px;
+}
+
+.menu-btn {
+  border-color: black;
+  color: black;
 }
 
 .menu-btn:hover {
   background: white;
-  color: black;
+  color: #c8a97e;
+  border-color: #c8a97e;
 }
 
-.book-btn {
+.booking-btn {
   background: #c8a97e;
   border-color: #c8a97e;
 }
 
-.book-btn:hover {
-  background: #b5986e;
-  border-color: #b5986e;
+.booking-btn:hover {
+  background: white;
+  color: #c8a97e;
 }

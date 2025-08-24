@@ -37,22 +37,37 @@ nav ul {
   gap: 30px;
 }
 
-
-
 nav ul li {
   padding: 10px;
-  padding-top: 0px;
   list-style-type: none;
 }
 
 
 nav ul li a {
+  position: relative;
   color: white;
   text-decoration: none;
   font-size: 14px;
   letter-spacing: 1px;
 }
 
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  height: 2px;
+  border-radius: 1px;
+  width: 100%;
+  left: 0;
+  background-color: white;
+  transition: 0.3s;
+  transition-timing-function: ease-in-out;
+  transform: scaleX(0);
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1);
+}
 
 .nav-actions {
   display: flex;
@@ -60,16 +75,15 @@ nav ul li a {
   gap: 20px;
 }
 
-
 .booking {
   background: #c8a97e;
   color: white;
-  border: none;
+  border: 1px solid #c8a97e;
   padding: 10px 20px;
   cursor: pointer;
 }
 
 .booking:hover {
-    background: white;
-    color: #c8a97e;
+  background: white;
+  color: #c8a97e;
 }

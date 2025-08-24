@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react"
-import React from 'react'
-import logo from './miami_logo_rm.png'
+import { useNavigate } from 'react-router-dom';
+import logo from './assets/miami_logo_rm.png'
 import './Header.css'
 
 export default function Header() {
+    const navigate = useNavigate()
+    const handleBookingClick = () => {
+        window.open('/booking', '_blank', 'noopener,noreferrer')
+    }
     const [isScrolled, setIsScrolled] = useState(false)
 
     useEffect(() => {
@@ -15,20 +19,24 @@ export default function Header() {
     }, [])
     return (
         <header className={`navbar ${isScrolled ? "scrolled" : ""}`}>
-            <a href="/" className="logo-link">
+            <a href="#landing-page" className="logo-link">
                 <img src={logo} alt="MIAMI" className="logo-image" />
             </a>
             <nav>
                 <ul>
                     <li><a href="#rooms">ROOMS</a></li>
-                    <li><a href="#restau">RESTAURANTS</a></li>
+                    <li><a href="#restaurant">RESTAURANT</a></li>
                     <li><a href="#spa">SPA BY MIAMI</a></li>
                     <li><a href="#gallery">GALLERY</a></li>
-                    <li><a href="#contacts">CONTACT</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
                 </ul>
             </nav>
             <div className="nav-actions">
-                <button className="booking">BOOK NOW</button>
+                <button 
+                    className="booking"
+                    onClick={handleBookingClick}
+                    aria-label="Book Now"
+                >BOOK NOW</button>
             </div>
         </header>
     )

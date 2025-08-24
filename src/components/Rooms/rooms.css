@@ -1,5 +1,5 @@
 .rooms-section {
-  padding: 100px 5%;
+  padding: 50px 5%;
   background: #f9f9f9;
 }
 
@@ -7,27 +7,45 @@
   text-align: center;
   margin-bottom: 50px;
   font-size: 2.5rem;
+  color: #c8a97e;
 }
 
 .rooms-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .room-card {
   background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.room-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .room-swiper {
   height: 250px;
+  position: relative;
 }
 
 .room-swiper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.room-card:hover .room-swiper img {
+  transform: scale(1.05);
 }
 
 .room-card h3 {
@@ -38,19 +56,51 @@
 .room-card p {
   padding: 0 20px 20px;
   color: #c8a97e;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
 }
 
 .room-card button {
   margin: 0 20px 20px;
   background: #c8a97e;
   color: white;
-  border: none;
+  border: solid 1px white;
+  border-radius: 6px;
   padding: 10px 20px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .room-card button:hover {
   background: white;
   color: #c8a97e;
   border: solid 1px #c8a97e;
+}
+
+.room-swiper .swiper-button-next:after,
+.room-swiper .swiper-button-prev:after {
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  transform: rotate(45deg);
+  box-shadow: 3px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.room-swiper .swiper-button-next:after {
+  transform: translate(-40%, -50%) rotate(45deg);
+}
+
+.room-swiper .swiper-button-prev:after {
+  transform: translate(-60%, -50%) rotate(-135deg);
+}
+
+.room-swiper .swiper-button-next:hover:after,
+.room-swiper .swiper-button-prev:hover:after {
+  border-color: #c8a97e;
 }
