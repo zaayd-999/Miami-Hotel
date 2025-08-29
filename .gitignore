@@ -1,0 +1,11 @@
+.env
+node_modules/
+miami_hotel.sql
+package-lock.json
+.vscode/
+README.md
+dist/
+run.bat
+compile.bat
+test/
+nodemon.json
