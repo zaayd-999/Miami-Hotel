@@ -34,8 +34,8 @@ export async function execute ( req : Request , res : Response , database : Conn
                 res.status(409).json({ error: "Email is already registered." });
                 return;
             }
-            const insertQuery = 'INSERT INTO users (first_name, last_name, email, password, phone, address, city, country, postal_code, salt,created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-            const values = [firstName, lastName, email, hashedPassword, phone, address, city, country, postal_code, salt, currentDateN];
+            const insertQuery = 'INSERT INTO users (first_name, last_name, email, password, phone, address, city, country, postal_code,created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+            const values = [firstName, lastName, email, hashedPassword, phone, address, city, country, postal_code, currentDateN];
             database.query(insertQuery, values, (insertErr, insertResults) => {
                 if (insertErr) {
                     res.status(500).json({ error: "Failed to create account." });

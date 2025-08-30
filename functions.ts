@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import dotenv from 'dotenv';
 import ms , { StringValue } from 'ms';
 dotenv.config();
+import { Connection } from 'mysql';
 
 import { AccessTokenUserStructure , refreshTokenUserStructure } from './types/usersStructure';
 
@@ -62,7 +63,7 @@ export function sendMail (transport : Transporter , mailOptions :SendMailOptions
  * @param {number} roleID - The role identifier (0 = Member, 1 = Hotel Owner, 2 = Admin).
  * @returns {string} The name of the role.
  */
-export function getUserRole (roleID : number) : string {
+export function getUserRole (roleID : number) : "Member" | "Hotel Owner" | "Admin" {
 	if (roleID === 1) return "Hotel Owner";
 	if (roleID === 2) return "Admin";
     return "Member";
@@ -73,9 +74,10 @@ export function getUserRole (roleID : number) : string {
  * @returns {string} The formatted current time.
  */
 
-export function getTime() : string  {
-    return moment(Date.now()).format("YYYY-DD-MM [at] hh:mm A");
+export function getTime(time: number | Date = Date.now()) : string  {
+    return moment(time).format("YYYY-DD-MM [at] hh:mm A");
 };
+
 
 /**
  * Generates a short-lived access token for a user.
@@ -111,4 +113,27 @@ export function generateRefreshToken( user : refreshTokenUserStructure ) : strin
     };
     const accessToken = jwt.sign( user , process.env.REFRESH_TOKEN_SECRET , options );
     return accessToken;
+}
+
+/**
+ * @param token 
+ * @param database 
+ * @returns Check if the token is blocked
+ */
+
+export function checkIfBlocked(token: string, database: Connection): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+        database.query('SELECT * FROM blocked_tokens WHERE token = ?', [token], (err, result) => {
+            if (err) {
+                console.error("DB error:", err);
+                return resolve(false);
+            }
+
+            if (result.length > 0) {
+                resolve(true);
+            } else {
+                resolve(false);
+            }
+        });
+    });
 }

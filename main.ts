@@ -132,15 +132,15 @@ APITable.setHeading("API", "Status", "Router" , "Method");
  * @param {Router} Router
  * @param {string} route_name
  * @returns {Promise<void>}
- * @description Loads all APIs for a specific route
+ * @description Loads all Controllers for a specific route
  */
 
-async function loadAPIs(Router : Router , route_name : string , router_link : string) : Promise<void> {
-    for ( let version of readdirSync('./API') ) {
-        for( let dir of readdirSync(`./API/${version}`) ) {
-            for ( let file of readdirSync(`./API/${version}/${dir}`).filter(file => file.endsWith(".js") || file.endsWith(".ts")) ) {
+async function loadControllers(Router : Router , route_name : string , router_link : string) : Promise<void> {
+    for ( let version of readdirSync('./Controllers') ) {
+        for( let dir of readdirSync(`./Controllers/${version}`) ) {
+            for ( let file of readdirSync(`./Controllers/${version}/${dir}`).filter(file => file.endsWith(".js") || file.endsWith(".ts")) ) {
                 try {
-                    const thisFile : APIFileStructure = require(`./API/${version}/${dir}/${file}`.replace(".js","").replace(".ts",""));
+                    const thisFile : APIFileStructure = require(`./Controllers/${version}/${dir}/${file}`.replace(".js","").replace(".ts",""));
                     if(thisFile.help && thisFile.execute){
                         if(thisFile.help.router == route_name){
                             (Router as any)[thisFile.help.methode.toLocaleLowerCase()](`/${thisFile.help.host}`, (req: Request, res: Response) => {
@@ -182,7 +182,7 @@ async function loadRoutes() : Promise<void> {
                     });
                 } else {
                     app.use(`/api/${dir}/${host}`, middleware, router);
-                    loadAPIs(router , host , `/api/${dir}/${host}`);
+                    loadControllers(router , host , `/api/${dir}/${host}`);
                 }
                 RouteTable.addRow(`${host}`, "✅", enabled ? "Enabled" : "Disabled");
             } catch (error) {

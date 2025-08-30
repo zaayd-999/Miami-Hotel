@@ -9,3 +9,4 @@ run.bat
 compile.bat
 test/
 nodemon.json
+Controllers/v1/account-system/generate_access.ts
