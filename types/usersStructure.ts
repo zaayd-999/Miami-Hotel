@@ -68,3 +68,19 @@ export interface accessTokenStructure {
     iat : number,
     exp : number,
 }
+
+export interface refreshTokenStructure {
+    user_id : number,
+    first_name : string,
+    last_name : string,
+    email : string,
+    phone : string,
+    address : string,
+    city : string,
+    postal_code : number,
+    activated : number,
+    account_type : "Member" | "Hotel Owner" | "Admin",
+    UUID : string,
+    iat : number,
+    exp : number,
+}

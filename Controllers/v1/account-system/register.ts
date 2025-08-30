@@ -17,7 +17,6 @@ export async function execute ( req : Request , res : Response , database : Conn
     try {
         let { firstName, lastName, email, password , phone , address , country , postal_code } = req.body;
         let city = req.body['city'];
-        console.log(req.body);
         if (!firstName || !lastName || !email || !password || !phone || !address || !city || !country || !postal_code) {
             res.status(400).json({ error: "All fields are required." });
             return;
@@ -88,8 +87,14 @@ export async function execute ( req : Request , res : Response , database : Conn
                     if (mailErr) {
                         console.error("Failed to send welcome email:", mailErr);
                     } else {
-                        res.status(201).json({ message: "User registered successfully." });
-                        console.log("Welcome email sent:", info.response);
+                        //
+                        database.query('INSERT INTO refresh_tokens ( user_id ) VALUES ( ? )' , [insertResults.insertId] , ( err , result ) => {
+                            if(err){
+                                console.error("Failed to create refresh token entry:", err);
+                            } else {
+                                res.status(201).json({ message: "User registered successfully." });
+                            }
+                        });
                     }
                 });
             });

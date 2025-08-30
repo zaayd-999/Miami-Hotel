@@ -31,12 +31,12 @@ export async function execute ( req : Request , res : Response , database : Conn
             return;
         }
         
-        const isBlocked = await checkIfBlocked(token as string , database);
+        /*const isBlocked = await checkIfBlocked(token as string , database);
         
         if(isBlocked){
             res.status(403).json({ success : false , message : "Token is blocked" });
             return;
-        }
+        }*/
 
         let userData = user as accessTokenStructure;
         let query = `SELECT * FROM users WHERE user_id = ?`;

@@ -197,6 +197,8 @@ async function loadRoutes() : Promise<void> {
     console.log("All routes loaded successfully.".green.bold);
 }
 
+export { database };
+
 loadRoutes();
 
 
