@@ -4,7 +4,10 @@ import heroImage from "./assets/hero-background.jpg"
 
 const Hero = () => {
     const handleExplore = () => {
-
+        const roomsSection = document.getElementById('rooms')
+        if (roomsSection) {
+            roomsSection.scrollIntoView({ behavior: 'smooth'})
+        }
     }
     return (
         <section className="hero">
@@ -12,6 +15,8 @@ const Hero = () => {
                 className="hero-image"
                 style={{ backgroundImage: `url(${heroImage})` }}
             />
+
+            <div className="hero-overlay"></div>
 
             <motion.div
                 className="hero-content"

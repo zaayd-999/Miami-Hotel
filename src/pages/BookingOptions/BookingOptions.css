@@ -1,0 +1,49 @@
+.booking-options {
+  padding: 100px 20px;
+  background: #fafafa;
+}
+
+.options-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.option-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.option-card.highlighted {
+  border: 2px solid #c8a97e;
+  transform: scale(1.05);
+}
+
+.option-btn {
+  width: 100%;
+  padding: 15px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.option-btn.primary {
+  background: #c8a97e;
+  color: white;
+}
+
+.option-btn.guest {
+  background: #333;
+  color: white;
+}

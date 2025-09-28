@@ -12,6 +12,8 @@ function Restaurant() {
     link.click()
     document.body.removeChild(link)
   }
+
+  
   const handleReservation = () => {
 
   }

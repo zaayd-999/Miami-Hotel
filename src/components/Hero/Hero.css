@@ -2,6 +2,9 @@
   position: relative;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-image {
@@ -12,27 +15,52 @@
   height: 100%;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   z-index: -1;
 }
 
+/*overlay*/
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+
 
 .hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   text-align: center;
   color: white;
+  z-index: 3;
+  padding: 0 20px;
+  max-width: 1200px;
+  width: 100%;
+  transform: translate(-50%, -50%);
 }
+
+
 
 .hero-content h1 {
   font-size: 5rem;
   margin-bottom: 20px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  line-height: 1.1;
 }
 
 .hero-content p {
   font-size: 1.5rem;
   margin-bottom: 30px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  opacity: 0.9;
 }
 
 .explore {
@@ -43,9 +71,150 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .explore:hover {
   background: white;
   color: black;
+}
+
+/* responsive design */
+
+@media (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .hero-content p {
+    font-size: 1.3rem;
+  }
+  
+  .explore {
+    padding: 14px 35px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 80vh;
+    min-height: 500px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+  }
+  
+  .hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+  }
+  
+  .explore {
+    padding: 12px 30px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .hero {
+    height: 70vh;
+    min-height: 400px;
+  }
+  
+  .hero-content {
+    padding: 0 15px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.2rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+  
+  .explore {
+    padding: 10px 25px;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 360px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+  
+  .explore {
+    padding: 8px 20px;
+    font-size: 10px;
+  }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    height: 100vh;
+    min-height: 400px;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* High-resolution screens */
+@media (min-width: 1920px) {
+  .hero-content h1 {
+    font-size: 5.5rem;
+  }
+  
+  .hero-content p {
+    font-size: 2rem;
+  }
+  
+  .explore {
+    padding: 18px 45px;
+    font-size: 16px;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .explore {
+    transition: none;
+  }
+  
+  .hero-content {
+    animation: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
 }

@@ -104,3 +104,13 @@ overlay {
   background: white;
   color: #c8a97e;
 }
+
+@media (max-width: 480px) {
+  /*.restaurant-content {
+    justify-content: center;
+  }*/
+
+  .description-sec {
+    width: 100%;
+  }
+}
